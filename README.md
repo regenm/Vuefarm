@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # frontend
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -27,3 +28,7 @@ npm run dev
 ```sh
 npm run build
 ```
+=======
+# Vuefarm
+Vue with mqtt
+>>>>>>> 229df655cfde6e9ba354d7c6a7b367ca58fa107a
