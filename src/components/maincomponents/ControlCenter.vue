@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import basicButton from '@/components/childrencomponents/buttons/basicButton.vue'
+import basicChart from '@/components/childrencomponents/echarts/basicChart.vue'
+
 </script>
 
 <template>
 
 Control
-
-  
+<basicButton />
+  <basicChart />
 </template>
 
 <style scoped>
