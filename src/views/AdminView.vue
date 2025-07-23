@@ -1,56 +1,47 @@
 <template>
   <div class="common-layout">
-    <!-- 顶部 banner -->
-    <el-header class="banner">
-      <h2>物联网水控系统 V2.0</h2>
-    </el-header>
-
     <el-container class="container">
       <!-- 左侧 aside -->
       <el-aside class="aside" width="200px">
-        <el-scrollbar>
-          <el-menu
-            :default-openeds="['1', '2']"
-            class="menu"
-            background-color="#34495e"
-            text-color="#ecf0f1"
-            active-text-color="#1abc9c"
-          >
-            <el-sub-menu index="1">
-              <template #title>
-                <h1>控制</h1>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="1-2" @click="toComponentMethod('/sendmessage')">控制设备</el-menu-item>
-              </el-menu-item-group>
-            </el-sub-menu>
-            <el-sub-menu index="2">
-              <template #title>
-                <h1>数据展示</h1>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="2-1" @click="toComponentMethod('/datatemp')">温度湿度</el-menu-item>
-                <el-menu-item index="2-2" @click="toComponentMethod('/dataweather')">天气数据</el-menu-item>
-                <el-menu-item index="2-3" @click="toComponentMethod('/realtimedata')">实时数据</el-menu-item>
-                <el-menu-item index="2-4">其他数据</el-menu-item>
-              </el-menu-item-group>
-            </el-sub-menu>
-          </el-menu>
-        </el-scrollbar>
+        
+            <el-menu
+              class="menu"
+              background-color="#34495e"
+              text-color="#ecf0f1"
+              active-text-color="#1abc9c"
+            >
+              <el-menu-item index="1" @click="toComponentMethod('/controlcenter')">
+                <h1>控制面板</h1>
+              </el-menu-item>
+
+              <el-menu-item index="2" @click="toComponentMethod('/dataexhibit')">
+                <h1>数据面板</h1>
+              </el-menu-item>
+            </el-menu>
+
+        
       </el-aside>
 
-      <!-- 中间主内容区域 -->
-      <el-main class="main">
-        <RouterView />
-      </el-main>
+      <!-- 右侧主区域：包含顶部 banner + 主内容 -->
+      <el-container>
+        <!-- 顶部 banner -->
+        <el-header class="banner">
+          <h2>VUE FARM V1.0</h2>
+        </el-header>
+
+        <!-- 主内容区域 -->
+        <el-main class="main">
+          <RouterView />
+        </el-main>
+      </el-container>
     </el-container>
   </div>
 </template>
 
+
 <script setup>
 import { useRouter } from 'vue-router';
 const router = useRouter();
-
 const toComponentMethod = (subpath) => {
   router.push({ path: '/admin' + subpath });
 };
