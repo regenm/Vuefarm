@@ -1,34 +1,14 @@
-<<<<<<< HEAD
-# frontend
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+# VUE FARM
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+用vue写一个农场管理平台前端用于管理农场。
 
-## Customize configuration
+## 数据展示模块
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+* MQTT用于实时展示数据
+* 后端提供历史数据统计
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-=======
-# Vuefarm
-Vue with mqtt
->>>>>>> 229df655cfde6e9ba354d7c6a7b367ca58fa107a
+> 数据内容：
+>
+> 1. 温度、湿度、二氧化碳浓度、光照强度、土壤水分、植物养分含量

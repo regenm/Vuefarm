@@ -10,12 +10,12 @@
               text-color="#ecf0f1"
               active-text-color="#1abc9c"
             >
-              <el-menu-item index="1" @click="toComponentMethod('/controlcenter')">
-                <h1>控制面板</h1>
+              <el-menu-item index="1" @click="toComponentMethod('/dataexhibit')">
+                <h1>数据面板</h1>
               </el-menu-item>
 
-              <el-menu-item index="2" @click="toComponentMethod('/dataexhibit')">
-                <h1>数据面板</h1>
+              <el-menu-item index="2" @click="toComponentMethod('/controlcenter')">
+                <h1>控制面板</h1>
               </el-menu-item>
             </el-menu>
 

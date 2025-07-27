@@ -6,9 +6,10 @@ import basicChart from '@/components/childrencomponents/echarts/basicChart.vue'
 
 <template>
 
-Control
+Data
 <basicButton />
   <basicChart />
+
 </template>
 
 <style scoped>
