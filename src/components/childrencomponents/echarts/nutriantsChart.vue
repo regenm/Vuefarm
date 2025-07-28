@@ -47,13 +47,21 @@ function changeGranularity(granularity) {
   updateChart()
 }
 
-// 模拟真实气温数据（平滑变化 + 随机波动）
-function generateTemperatureData(count) {
+// 模拟土壤营养含量数据（白天降低，夜间回升）
+function generateNutrientContentData(count) {
   const data = []
-  let base = 20 + Math.random() * 5 // 起始温度
+  let base = 60 + Math.random() * 10 // 起始营养含量（60%）
   for (let i = 0; i < count; i++) {
-    // 下一点在前一点基础上小幅波动
-    base += (Math.random() - 0.5) * 10
+    const hour = (i * 24) / count // 计算当前点对应的小时
+    if (hour >= 6 && hour <= 18) {
+      // 白天（6点到18点），营养含量逐渐降低
+      base -= Math.random() * 0.5
+      if (base < 30) base = 30 // 保持最低营养含量为30%
+    } else {
+      // 晚上（18点到6点），营养含量回升
+      base += Math.random() * 1
+      if (base > 70) base = 70 // 保持最高营养含量为70%
+    }
     data.push(parseFloat(base.toFixed(1)))
   }
   return data
@@ -64,7 +72,7 @@ function updateChart() {
   const count = 20 // 固定 20 个点
   const now = new Date()
   const xData = []
-  const yData = generateTemperatureData(count)
+  const yData = generateNutrientContentData(count)
 
   if (selectedGranularity.value === '1d') {
     // 过去24小时 → 每小时间隔 (20个点)
@@ -76,37 +84,37 @@ function updateChart() {
     // 过去2天 → 每2.4小时一个点
     for (let i = count - 1; i >= 0; i--) {
       const d = new Date(now.getTime() - i * (48 / count) * 3600 * 1000)
-      xData.push(`${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:00`)
+      xData.push(`${d.getMonth() + 1}/${d.getDate()} ${d.getHours()}:00`)
     }
   } else if (selectedGranularity.value === '3d') {
     // 过去3天 → 每3.6小时一个点
     for (let i = count - 1; i >= 0; i--) {
       const d = new Date(now.getTime() - i * (72 / count) * 3600 * 1000)
-      xData.push(`${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:00`)
+      xData.push(`${d.getMonth() + 1}/${d.getDate()} ${d.getHours()}:00`)
     }
   } else if (selectedGranularity.value === '7d') {
     // 过去7天 → 每8.4小时一个点
     for (let i = count - 1; i >= 0; i--) {
       const d = new Date(now.getTime() - i * (168 / count) * 3600 * 1000)
-      xData.push(`${d.getMonth()+1}/${d.getDate()}`)
+      xData.push(`${d.getMonth() + 1}/${d.getDate()}`)
     }
   } else if (selectedGranularity.value === '30d') {
     // 过去30天 → 每1.5天一个点
     for (let i = count - 1; i >= 0; i--) {
       const d = new Date(now.getTime() - i * (720 / count) * 3600 * 1000)
-      xData.push(`${d.getMonth()+1}/${d.getDate()}`)
+      xData.push(`${d.getMonth() + 1}/${d.getDate()}`)
     }
   }
 
   const option = {
     title: {
-      text: '温度变化曲线',
+      text: '土壤营养含量变化曲线',
       left: 'center',
       textStyle: {
-      color: '#FF5733',  // 这里设置标题颜色，#FF5733是一个示例颜色
-      fontSize: 20,      // 可选：设置字体大小
-      fontWeight: 'bold' // 可选：设置字体粗细
-  }
+        color: '#FF5733',  // 这里设置标题颜色，#FF5733是一个示例颜色
+        fontSize: 20,      // 可选：设置字体大小
+        fontWeight: 'bold' // 可选：设置字体粗细
+      }
     },
     tooltip: {
       trigger: 'axis'
@@ -116,11 +124,12 @@ function updateChart() {
       data: xData
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      name: '营养含量 (%)'  // 设置Y轴的单位
     },
     series: [
       {
-        name: '温度',
+        name: '营养含量',
         type: 'line',
         data: yData,
         smooth: true // 平滑线条，更真实
@@ -138,5 +147,4 @@ function updateChart() {
   height: 400px;
   color: #000;
 }
-
 </style>

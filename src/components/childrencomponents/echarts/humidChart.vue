@@ -47,13 +47,13 @@ function changeGranularity(granularity) {
   updateChart()
 }
 
-// 模拟真实气温数据（平滑变化 + 随机波动）
-function generateTemperatureData(count) {
+// 模拟湿度数据（平滑变化 + 随机波动）
+function generateHumidityData(count) {
   const data = []
-  let base = 20 + Math.random() * 5 // 起始温度
+  let base = 50 + Math.random() * 10 // 起始湿度值
   for (let i = 0; i < count; i++) {
     // 下一点在前一点基础上小幅波动
-    base += (Math.random() - 0.5) * 10
+    base += (Math.random() - 0.5) * 5
     data.push(parseFloat(base.toFixed(1)))
   }
   return data
@@ -64,7 +64,7 @@ function updateChart() {
   const count = 20 // 固定 20 个点
   const now = new Date()
   const xData = []
-  const yData = generateTemperatureData(count)
+  const yData = generateHumidityData(count)
 
   if (selectedGranularity.value === '1d') {
     // 过去24小时 → 每小时间隔 (20个点)
@@ -100,13 +100,13 @@ function updateChart() {
 
   const option = {
     title: {
-      text: '温度变化曲线',
+      text: '湿度变化曲线',
       left: 'center',
       textStyle: {
-      color: '#FF5733',  // 这里设置标题颜色，#FF5733是一个示例颜色
-      fontSize: 20,      // 可选：设置字体大小
-      fontWeight: 'bold' // 可选：设置字体粗细
-  }
+        color: '#FF5733',  // 这里设置标题颜色，#FF5733是一个示例颜色
+        fontSize: 20,      // 可选：设置字体大小
+        fontWeight: 'bold' // 可选：设置字体粗细
+      }
     },
     tooltip: {
       trigger: 'axis'
@@ -116,11 +116,12 @@ function updateChart() {
       data: xData
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      name: '湿度 (%)'  // 设置Y轴的单位
     },
     series: [
       {
-        name: '温度',
+        name: '湿度变化',  // 修改图例名称
         type: 'line',
         data: yData,
         smooth: true // 平滑线条，更真实
@@ -138,5 +139,4 @@ function updateChart() {
   height: 400px;
   color: #000;
 }
-
 </style>

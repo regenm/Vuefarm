@@ -47,13 +47,19 @@ function changeGranularity(granularity) {
   updateChart()
 }
 
-// 模拟真实气温数据（平滑变化 + 随机波动）
-function generateTemperatureData(count) {
+// 模拟晴天光照强度数据（白天强，晚上弱）
+function generateLightIntensityData(count) {
   const data = []
-  let base = 20 + Math.random() * 5 // 起始温度
+  let base = 300 // 晴天的基础光照强度
   for (let i = 0; i < count; i++) {
-    // 下一点在前一点基础上小幅波动
-    base += (Math.random() - 0.5) * 10
+    const hour = (i * 24) / count // 计算当前点对应的小时
+    if (hour >= 6 && hour <= 18) {
+      // 白天（6点到18点），强光照
+      base = 400 + Math.random() * 400
+    } else {
+      // 晚上（18点到6点），弱光照
+      base = Math.random() * 100
+    }
     data.push(parseFloat(base.toFixed(1)))
   }
   return data
@@ -64,7 +70,7 @@ function updateChart() {
   const count = 20 // 固定 20 个点
   const now = new Date()
   const xData = []
-  const yData = generateTemperatureData(count)
+  const yData = generateLightIntensityData(count)
 
   if (selectedGranularity.value === '1d') {
     // 过去24小时 → 每小时间隔 (20个点)
@@ -100,13 +106,13 @@ function updateChart() {
 
   const option = {
     title: {
-      text: '温度变化曲线',
+      text: '光照强度变化曲线',
       left: 'center',
       textStyle: {
-      color: '#FF5733',  // 这里设置标题颜色，#FF5733是一个示例颜色
-      fontSize: 20,      // 可选：设置字体大小
-      fontWeight: 'bold' // 可选：设置字体粗细
-  }
+        color: '#FF5733',  // 这里设置标题颜色，#FF5733是一个示例颜色
+        fontSize: 20,      // 可选：设置字体大小
+        fontWeight: 'bold' // 可选：设置字体粗细
+      }
     },
     tooltip: {
       trigger: 'axis'
@@ -116,11 +122,12 @@ function updateChart() {
       data: xData
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      name: '光照强度 (Lux)'  // 设置Y轴的单位
     },
     series: [
       {
-        name: '温度',
+        name: '光照强度',
         type: 'line',
         data: yData,
         smooth: true // 平滑线条，更真实
@@ -138,5 +145,4 @@ function updateChart() {
   height: 400px;
   color: #000;
 }
-
 </style>
