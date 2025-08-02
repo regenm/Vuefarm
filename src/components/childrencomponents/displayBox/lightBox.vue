@@ -19,6 +19,7 @@ const lightIntensity = ref(500)  // 光照强度（Lux）
   width: 200px;           /* 卡片宽度 */
   text-align: center;     /* 内容居中 */
   font-size: 20px;
+  height: 100px;
 }
 
 .light {

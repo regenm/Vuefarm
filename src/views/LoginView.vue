@@ -80,30 +80,5 @@ const toComponentMethod = (subpath) => {
 </template>
 
 <style scoped>
-.background {
-  background: url("../assets/1.jpg");
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-size: cover; /* 使背景图适应容器 */
-}
 
-.card {
-  position: absolute;
-  left: 50%;
-  top: 30%;
-  transform: translateX(-50%); /* 使卡片水平居中 */
-  width: 300px;
-  height: 300px;
-  border-radius: 10%;
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
-.button-container {
-  width: 240px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
 </style>

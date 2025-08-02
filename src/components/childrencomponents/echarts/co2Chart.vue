@@ -100,7 +100,7 @@
   
     const option = {
       title: {
-        text: 'Co2变化曲线',
+        text: 'Co2变化曲线 ppm',
         left: 'center',
         textStyle: {
         color: '#FF5733',  // 这里设置标题颜色，#FF5733是一个示例颜色

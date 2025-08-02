@@ -1,7 +1,7 @@
 <template>
     <el-card class="temperature-card" shadow="hover">
       <div class="content">
-        当前温度：
+        当前 温度：
         <span class="temperature">{{ temperature }}°C</span>
       </div>
     </el-card>
@@ -19,6 +19,7 @@
     width: 200px;           /* 卡片宽度 */
     text-align: center;     /* 内容居中 */
     font-size: 20px;
+    height: 100px;
   }
   
   .temperature {

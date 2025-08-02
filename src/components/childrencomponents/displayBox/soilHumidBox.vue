@@ -19,6 +19,7 @@ const humidity = ref(60)  // 土壤湿度（百分比）
   width: 200px;           /* 卡片宽度 */
   text-align: center;     /* 内容居中 */
   font-size: 20px;
+  height: 100px;
 }
 
 .humidity {

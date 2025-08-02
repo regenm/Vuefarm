@@ -16,7 +16,8 @@
   
   <style scoped>
   .co2-card {
-    width: 200px;           /* 卡片宽度 */
+    width: 200px;  
+    height: 100px;         /* 卡片宽度 */
     text-align: center;     /* 内容居中 */
     font-size: 20px;
   }

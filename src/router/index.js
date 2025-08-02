@@ -3,6 +3,7 @@ import LoginView from '../views/LoginView.vue';
 import AdminView from '../views/AdminView.vue';
 import ControlCenter from '../components/maincomponents/ControlCenter.vue';
 import DataExhibit from '../components/maincomponents/DataExhibit.vue';
+import RuntimeStatus from '../components/maincomponents/RuntimeStatus.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
           path: 'dataexhibit',
           name: 'DataExhibit',
           component: DataExhibit,
+        },
+        {
+          path: 'runtimestatus',
+          name: 'runtimestatus',
+          component: RuntimeStatus,
         },
       ],
     },

@@ -2,7 +2,7 @@
   <el-card class="temperature-card" shadow="hover">
     <div class="content">
       当前空气湿度：
-      <span class="temperature">{{ temperature }}°C</span>
+      <span class="temperature">{{ temperature }}%</span>
     </div>
   </el-card>
 </template>
@@ -17,6 +17,7 @@ const temperature = ref(25)
 <style scoped>
 .temperature-card {
   width: 200px;           /* 卡片宽度 */
+  height: 100px;
   text-align: center;     /* 内容居中 */
   font-size: 20px;
 }
