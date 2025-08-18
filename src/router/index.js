@@ -8,6 +8,7 @@ import RuntimeStatus from '../components/maincomponents/RuntimeStatus.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    { path: '/', redirect: '/admin' },  // 默认访问 / 时跳转到 /admin
     {
       path: '/admin',
       name: 'Admin',
@@ -32,7 +33,7 @@ const router = createRouter({
     },
     {
       path: '/:pathMatch(.*)*', 
-      redirect: '/admin/controlcenter', // 处理未匹配的路由，重定向到登录页面
+      redirect: '/admin/', // 处理未匹配的路由，重定向到登录页面
     },
   ],
 });
