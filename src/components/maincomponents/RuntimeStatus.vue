@@ -282,6 +282,7 @@ const sensorList = ref([
   }
 ])
 
+
 // 计算在线MCU数量
 const mcuOnlineCount = computed(() => {
   return mcuList.value.filter(mcu => mcu.status === 'online').length
