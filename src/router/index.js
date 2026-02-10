@@ -1,18 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginView from '../views/LoginView.vue';
-import AdminView from '../views/AdminView.vue';
+import Main from '../views/Main.vue';
 import ControlCenter from '../components/maincomponents/ControlCenter.vue';
 import DataExhibit from '../components/maincomponents/DataExhibit.vue';
 import RuntimeStatus from '../components/maincomponents/RuntimeStatus.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // 添加 history 选项
+  history: createWebHistory(),
   routes: [
-    { path: '/', redirect: '/admin' },  // 默认访问 / 时跳转到 /admin
     {
-      path: '/admin',
-      name: 'Admin',
-      component: AdminView, // 管理页面
+      path: '/',
+      name: 'Main',
+      component: Main, // 管理页面
       children: [
         {
           path: 'controlcenter',
@@ -26,14 +25,10 @@ const router = createRouter({
         },
         {
           path: 'runtimestatus',
-          name: 'runtimestatus',
+          name: 'RuntimeStatus', // 建议保持命名一致，首字母大写
           component: RuntimeStatus,
         },
       ],
-    },
-    {
-      path: '/:pathMatch(.*)*', 
-      redirect: '/admin/', // 处理未匹配的路由，重定向到登录页面
     },
   ],
 });
